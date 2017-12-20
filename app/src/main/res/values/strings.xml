@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MonkeyVideoViewerAndroid</string>
+    <string name="base_url">http://monkey-monkey.com/</string>
 </resources>

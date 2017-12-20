@@ -21,7 +21,7 @@ public class Contextor {
         this.mContext = mContext;
     }
 
-    public Context getmContext() {
+    public Context getContext() {
         return mContext;
     }
 }
