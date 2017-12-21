@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.monkey_monkey.monkeyvideoviewerandroid.R;
 
-public class BrowseVideoActivity extends AppCompatActivity {
+public class TimeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_browse_video);
+        setContentView(R.layout.activity_time);
     }
 }

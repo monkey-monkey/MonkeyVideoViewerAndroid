@@ -22,7 +22,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.KeyboardActivity" />
-        <activity android:name=".activity.BrowseVideoActivity"></activity>
+        <activity android:name=".activity.BrowseVideoActivity" />
+        <activity android:name=".activity.TimeActivity"></activity>
     </application>
 
 </manifest>
