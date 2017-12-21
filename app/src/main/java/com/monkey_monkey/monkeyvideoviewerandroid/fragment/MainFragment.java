@@ -23,6 +23,10 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         void onCallBarcodeScanner();
 
         void onCallKeyboardInput();
+
+        void onCallClock();
+
+        void onCallScanner();
     }
 
     public static MainFragment getInstance() {
@@ -77,8 +81,10 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 callback.onCallKeyboardInput();
                 break;
             case R.id.clock_btn:
+                callback.onCallClock();
                 break;
             case R.id.sheet_btn:
+                callback.onCallScanner();
                 break;
             default:
                 break;

@@ -23,7 +23,8 @@
         </activity>
         <activity android:name=".activity.KeyboardActivity" />
         <activity android:name=".activity.BrowseVideoActivity" />
-        <activity android:name=".activity.TimeActivity"></activity>
+        <activity android:name=".activity.ClockActivity" />
+        <activity android:name=".activity.ScannerActivity"></activity>
     </application>
 
 </manifest>

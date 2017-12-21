@@ -72,4 +72,16 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
         Intent intent = new Intent(MainActivity.this, KeyboardActivity.class);
         startActivityForResult(intent, REQUEST_KEYBOARD_INPUT);
     }
+
+    @Override
+    public void onCallClock() {
+        Intent intent = new Intent(MainActivity.this, ClockActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onCallScanner() {
+        Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
+        startActivity(intent);
+    }
 }
