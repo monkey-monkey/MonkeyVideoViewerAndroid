@@ -28,7 +28,8 @@ public class ScannerActivity extends AppCompatActivity implements BarcodeReader.
         Log.i(TAG, "onScanned: " + barcode.displayValue);
         Intent intent = new Intent();
         intent.putExtra(ACTIVITY_RESULT, barcode.displayValue);
-        setResult(MainActivity.REQUEST_QRCODE_SCANNER, intent);
+        setResult(MainActivity.REQUEST_QR_CODE_SCANNER, intent);
+        finish();
     }
 
     @Override

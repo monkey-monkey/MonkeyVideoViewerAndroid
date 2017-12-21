@@ -3,6 +3,7 @@ package com.monkey_monkey.monkeyvideoviewerandroid.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -13,7 +14,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
 
     private static final String TAG = "MainActivity";
     public static final int REQUEST_KEYBOARD_INPUT = 0;
-    public static final int REQUEST_QRCODE_SCANNER = 1;
+    public static final int REQUEST_QR_CODE_SCANNER = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
                     startBrowseVideoActivity(data.getStringExtra(KeyboardActivity.ACTIVITY_RESULT));
                 }
                 break;
-            case REQUEST_QRCODE_SCANNER:
+            case REQUEST_QR_CODE_SCANNER:
                 if (data != null && data.getStringExtra(ScannerActivity.ACTIVITY_RESULT) != null) {
                     startOpenFileActivity(data.getStringExtra(ScannerActivity.ACTIVITY_RESULT));
                 }
@@ -62,11 +63,11 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
     }
 
     private void startBrowseVideoActivity(String studentID) {
-
+        Log.i(TAG, "startBrowseVideoActivity: " + studentID);
     }
 
     private void startOpenFileActivity(String filePath){
-
+        Log.i(TAG, "startOpenFileActivity: " + filePath);
     }
 
     @Override
@@ -89,6 +90,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
     @Override
     public void onCallScanner() {
         Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
-        startActivityForResult(intent, REQUEST_QRCODE_SCANNER);
+        startActivityForResult(intent, REQUEST_QR_CODE_SCANNER);
     }
 }
