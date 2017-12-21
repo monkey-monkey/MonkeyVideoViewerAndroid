@@ -34,4 +34,6 @@ dependencies {
 
 //    Barcode scanner
     compile 'com.journeyapps:zxing-android-embedded:3.5.0'
+    implementation 'info.androidhive:barcode-reader:1.1.5'
+    implementation 'com.google.android.gms:play-services-vision:11.6.2'
 }

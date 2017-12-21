@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
 
     private static final String TAG = "MainActivity";
     public static final int REQUEST_KEYBOARD_INPUT = 0;
+    public static final int REQUEST_QRCODE_SCANNER = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,13 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case REQUEST_KEYBOARD_INPUT:
-                if (data != null && data.getStringExtra("studentID") != null) {
-                    startBrowseVideoActivity(data.getStringExtra("studentID"));
+                if (data != null && data.getStringExtra(KeyboardActivity.ACTIVITY_RESULT) != null) {
+                    startBrowseVideoActivity(data.getStringExtra(KeyboardActivity.ACTIVITY_RESULT));
+                }
+                break;
+            case REQUEST_QRCODE_SCANNER:
+                if (data != null && data.getStringExtra(ScannerActivity.ACTIVITY_RESULT) != null) {
+                    startOpenFileActivity(data.getStringExtra(ScannerActivity.ACTIVITY_RESULT));
                 }
                 break;
             default:
@@ -45,11 +51,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
                     if (result.getContents() != null) {
                         startBrowseVideoActivity(result.getContents());
                     }
-//                    if (result.getContents() == null) {
-//                        Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-//                    } else {
-//                        Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-//                    }
+                    if (result.getContents() != null){
+                        startBrowseVideoActivity(result.getContents());
+                    }
                 } else {
                     super.onActivityResult(requestCode, resultCode, data);
                 }
@@ -61,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
 
     }
 
+    private void startOpenFileActivity(String filePath){
+
+    }
 
     @Override
     public void onCallBarcodeScanner() {
@@ -82,6 +89,6 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
     @Override
     public void onCallScanner() {
         Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, REQUEST_QRCODE_SCANNER);
     }
 }

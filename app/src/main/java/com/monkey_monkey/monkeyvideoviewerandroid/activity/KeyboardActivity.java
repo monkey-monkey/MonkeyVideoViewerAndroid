@@ -10,6 +10,7 @@ import com.monkey_monkey.monkeyvideoviewerandroid.fragment.KeyboardFragment;
 public class KeyboardActivity extends AppCompatActivity implements KeyboardFragment.onRequestActivityChangeListener {
 
     private static final String TAG = "KeyboardActivity";
+    public static final String ACTIVITY_RESULT = "studentID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class KeyboardActivity extends AppCompatActivity implements KeyboardFragm
     @Override
     public void onSubmitStudentID(String studentID) {
         Intent intent = new Intent();
-        intent.putExtra("studentID", studentID);
+        intent.putExtra(ACTIVITY_RESULT, studentID);
         setResult(MainActivity.REQUEST_KEYBOARD_INPUT, intent);
         finish();
     }
