@@ -21,7 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.KeyboardActivity"></activity>
+        <activity android:name=".activity.KeyboardActivity" />
+        <activity android:name=".activity.BrowseVideoActivity"></activity>
     </application>
 
 </manifest>

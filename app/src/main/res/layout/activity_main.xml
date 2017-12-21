@@ -6,36 +6,60 @@
     android:orientation="horizontal"
     tools:context="com.monkey_monkey.monkeyvideoviewerandroid.activity.MainActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:paddingEnd="40dp"
-        android:paddingStart="40dp">
-
-        <ImageButton
-            android:id="@+id/camera_btn"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_photo_camera" />
-    </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingEnd="40dp"
+                android:paddingStart="40dp">
+
+                <ImageButton
+                    android:id="@+id/camera_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:src="@drawable/ic_photo_camera" />
+
+                <ImageButton
+                    android:id="@+id/clock_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:src="@drawable/ic_access_time" />
+            </LinearLayout>
 
 
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:paddingEnd="40dp"
-        android:paddingStart="40dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingEnd="40dp"
+                android:paddingStart="40dp">
 
-        <ImageButton
-            android:id="@+id/keyboard_btn"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_keyboard" />
-    </RelativeLayout>
+                <ImageButton
+                    android:id="@+id/keyboard_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:src="@drawable/ic_keyboard" />
+
+                <ImageButton
+                    android:id="@+id/sheet_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:src="@drawable/ic_insert_drive_file" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

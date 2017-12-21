@@ -7,6 +7,7 @@
     tools:context="com.monkey_monkey.monkeyvideoviewerandroid.activity.KeyboardActivity">
 
     <TextView
+        android:freezesText="true"
         android:id="@+id/text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
