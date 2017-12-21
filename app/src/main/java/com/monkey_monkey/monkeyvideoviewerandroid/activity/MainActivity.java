@@ -14,6 +14,7 @@ import com.monkey_monkey.monkeyvideoviewerandroid.R;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "MainActivity";
+    public static final int REQUEST_KEYBOARD_INPUT = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,19 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         keyboardBtn.setOnClickListener(this);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if (result != null) {
-            if (result.getContents() == null) {
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-    }
 
     @Override
     public void onClick(View view) {
@@ -51,8 +39,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new IntentIntegrator(this).initiateScan();
                 break;
             case R.id.keyboard_btn:
+                Intent intent = new Intent(MainActivity.this, KeyboardActivity.class);
+                startActivityForResult(intent, REQUEST_KEYBOARD_INPUT);
                 break;
             default:
+                break;
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case REQUEST_KEYBOARD_INPUT:
+                break;
+            default:
+                IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+                if (result != null) {
+                    if (result.getContents() == null) {
+                        Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    super.onActivityResult(requestCode, resultCode, data);
+                }
                 break;
         }
     }
