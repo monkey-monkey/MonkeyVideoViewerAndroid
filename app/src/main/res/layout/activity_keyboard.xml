@@ -7,9 +7,10 @@
     tools:context="com.monkey_monkey.monkeyvideoviewerandroid.activity.KeyboardActivity">
 
     <TextView
+        android:id="@+id/text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Student ID"
+        android:text="@string/enter_student_id"
         android:textAlignment="center"
         android:textSize="70sp" />
 
@@ -32,6 +33,7 @@
                 android:paddingTop="10dp">
 
                 <Button
+                    android:id="@+id/btn_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
@@ -41,6 +43,7 @@
                     android:textSize="@dimen/number_btn_text_size" />
 
                 <Button
+                    android:id="@+id/btn_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
@@ -50,6 +53,7 @@
                     android:textSize="@dimen/number_btn_text_size" />
 
                 <Button
+                    android:id="@+id/btn_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
@@ -67,6 +71,7 @@
                 android:paddingTop="10dp">
 
                 <Button
+                    android:id="@+id/btn_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
@@ -76,6 +81,7 @@
                     android:textSize="@dimen/number_btn_text_size" />
 
                 <Button
+                    android:id="@+id/btn_5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
@@ -85,6 +91,7 @@
                     android:textSize="@dimen/number_btn_text_size" />
 
                 <Button
+                    android:id="@+id/btn_6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
@@ -102,6 +109,7 @@
                 android:paddingTop="10dp">
 
                 <Button
+                    android:id="@+id/btn_7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
@@ -111,6 +119,7 @@
                     android:textSize="@dimen/number_btn_text_size" />
 
                 <Button
+                    android:id="@+id/btn_8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
@@ -120,6 +129,7 @@
                     android:textSize="@dimen/number_btn_text_size" />
 
                 <Button
+                    android:id="@+id/btn_9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
@@ -138,6 +148,7 @@
 
 
                 <ImageButton
+                    android:id="@+id/btn_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
@@ -146,6 +157,7 @@
                     android:src="@drawable/ic_backspace" />
 
                 <Button
+                    android:id="@+id/btn_0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
@@ -155,6 +167,7 @@
                     android:textSize="@dimen/number_btn_text_size" />
 
                 <ImageButton
+                    android:id="@+id/btn_enter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
