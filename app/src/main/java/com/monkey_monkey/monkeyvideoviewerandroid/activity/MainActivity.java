@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 import com.monkey_monkey.monkeyvideoviewerandroid.R;
 import com.monkey_monkey.monkeyvideoviewerandroid.fragment.MainFragment;
 
@@ -15,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
     private static final String TAG = "MainActivity";
     public static final int REQUEST_KEYBOARD_INPUT = 0;
     public static final int REQUEST_QR_CODE_SCANNER = 1;
+    public static final int REQUEST_BARCODE_SCANNER = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,18 +45,13 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
                     startOpenFileActivity(data.getStringExtra(ScannerActivity.ACTIVITY_RESULT));
                 }
                 break;
-            default:
-                IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-                if (result != null) {
-                    if (result.getContents() != null) {
-                        startBrowseVideoActivity(result.getContents());
-                    }
-                    if (result.getContents() != null){
-                        startBrowseVideoActivity(result.getContents());
-                    }
-                } else {
-                    super.onActivityResult(requestCode, resultCode, data);
+            case REQUEST_BARCODE_SCANNER:
+                if (data != null && data.getStringExtra(ScannerActivity.ACTIVITY_RESULT) != null) {
+                    startBrowseVideoActivity(data.getStringExtra(ScannerActivity.ACTIVITY_RESULT));
                 }
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
                 break;
         }
     }
@@ -72,7 +66,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
 
     @Override
     public void onCallBarcodeScanner() {
-        new IntentIntegrator(this).initiateScan();
+        Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
+        startActivityForResult(intent, REQUEST_BARCODE_SCANNER);
     }
 
     @Override
