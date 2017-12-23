@@ -23,8 +23,16 @@
         </activity>
         <activity android:name=".activity.KeyboardActivity" />
         <activity android:name=".activity.BrowseVideoActivity" />
-        <activity android:name=".activity.ClockActivity" />
-        <activity android:name=".activity.ScannerActivity"></activity>
+        <activity
+            android:name=".activity.ClockActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".activity.ScannerActivity" />
+
+        <service android:name=".service.CountDownService" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -3,6 +3,7 @@ package com.monkey_monkey.monkeyvideoviewerandroid.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -38,11 +39,14 @@ public class ClockFragment extends Fragment {
 
     private void initInstance(View rootView, Bundle savedInstanceState) {
         ViewPager viewPager = rootView.findViewById(R.id.view_pager);
-        viewPager.setAdapter(ClockFragmentViewPagerAdapter.getInstance(new ClockFragmentViewPagerAdapter.onInit() {
+        viewPager.setAdapter(ClockFragmentViewPagerAdapter.newInstance(new ClockFragmentViewPagerAdapter.onInit() {
             @Override
             public FragmentManager getFragmentManager() {
                 return getChildFragmentManager();
             }
         }));
+
+        TabLayout tabLayout = rootView.findViewById(R.id.tabLayout);
+        tabLayout.setupWithViewPager(viewPager);
     }
 }

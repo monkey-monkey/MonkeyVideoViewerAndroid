@@ -17,7 +17,6 @@ public class ClockFragmentViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private static final String TAG = "ClockViewPagerAdapter";
     private static final int NUMBER_OF_PAGE = 2;
-    private static ClockFragmentViewPagerAdapter instance;
 
     public interface onInit {
         FragmentManager getFragmentManager();
@@ -27,11 +26,8 @@ public class ClockFragmentViewPagerAdapter extends FragmentStatePagerAdapter {
         super(fm);
     }
 
-    public static ClockFragmentViewPagerAdapter getInstance(onInit init) {
-        if (instance == null) {
-            instance = new ClockFragmentViewPagerAdapter(init.getFragmentManager());
-        }
-        return instance;
+    public static ClockFragmentViewPagerAdapter newInstance(onInit init) {
+        return new ClockFragmentViewPagerAdapter(init.getFragmentManager());
     }
 
     @Override
