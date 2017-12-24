@@ -56,17 +56,20 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
         }
     }
 
-    private void startBrowseVideoActivity(String studentID) {
-        Log.i(TAG, "startBrowseVideoActivity: " + studentID);
+    private void startBrowseVideoActivity(String studentCode) {
+        Log.i(TAG, "startBrowseVideoActivity: " + studentCode);
+        Intent intent = new Intent(MainActivity.this, BrowseVideoActivity.class);
+        intent.putExtra("studentCode", studentCode);
+        startActivity(intent);
     }
 
-    private void startOpenFileActivity(String filePath){
+    private void startOpenFileActivity(String filePath) {
         Log.i(TAG, "startOpenFileActivity: " + filePath);
     }
 
     @Override
     public void onCallBarcodeScanner() {
-        Intent intent = new Intent(MainActivity.this, StreamVideoActivity.class);
+        Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
         startActivityForResult(intent, REQUEST_BARCODE_SCANNER);
     }
 
