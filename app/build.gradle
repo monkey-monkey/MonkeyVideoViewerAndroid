@@ -41,4 +41,10 @@ dependencies {
 
 //    Time picker
     compile 'com.code-troopers.betterpickers:library:3.1.0'
+
+//    Video player
+    compile 'com.google.android.exoplayer:exoplayer:2.6.0'
+    compile 'com.google.android.exoplayer:exoplayer-core:2.6.0'
+    compile 'com.google.android.exoplayer:exoplayer-dash:2.6.0'
+    compile 'com.google.android.exoplayer:exoplayer-ui:2.6.0'
 }

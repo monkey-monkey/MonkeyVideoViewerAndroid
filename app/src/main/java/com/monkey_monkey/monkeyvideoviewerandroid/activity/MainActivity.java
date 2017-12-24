@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
 
     @Override
     public void onCallBarcodeScanner() {
-        Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
+        Intent intent = new Intent(MainActivity.this, StreamVideoActivity.class);
         startActivityForResult(intent, REQUEST_BARCODE_SCANNER);
     }
 

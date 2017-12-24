@@ -3,6 +3,7 @@
     package="com.monkey_monkey.monkeyvideoviewerandroid">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".MainApplication"
@@ -33,6 +34,8 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".activity.StreamVideoActivity"></activity>
     </application>
 
 </manifest>
