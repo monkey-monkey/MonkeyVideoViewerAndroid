@@ -17,15 +17,24 @@ import com.monkey_monkey.monkeyvideoviewerandroid.adapter.BrowseVideoRecyclerVie
  * Created by admin on 24/12/2017 AD.
  */
 
-public class BrowseVideoFragment extends Fragment {
+public class BrowseVideoFragment extends Fragment implements BrowseVideoRecyclerViewAdapter.onClickListener {
     private static final String TAG = "BrowseVideoFragment";
     private static BrowseVideoFragment instance;
+    private BrowseVideoFragment.onClickListener callback;
+
+    public interface onClickListener {
+        void onClick(String studentCode);
+    }
 
     public static BrowseVideoFragment getInstance() {
         if (instance == null) {
             instance = new BrowseVideoFragment();
         }
         return instance;
+    }
+
+    public void init(BrowseVideoFragment.onClickListener callback) {
+        this.callback = callback;
     }
 
     @Nullable
@@ -38,9 +47,14 @@ public class BrowseVideoFragment extends Fragment {
 
     private void initInstance(View rootView, Bundle savedInstanceState) {
         RecyclerView recyclerView = rootView.findViewById(R.id.recycler_view);
-        BrowseVideoRecyclerViewAdapter.getInstance().init(getActivity(), getActivity().getIntent().getStringExtra("studentCode"));
+        BrowseVideoRecyclerViewAdapter.getInstance().init(getActivity(), getActivity().getIntent().getStringExtra("studentCode"), this);
         BrowseVideoRecyclerViewAdapter.getInstance().load();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(BrowseVideoRecyclerViewAdapter.getInstance());
+    }
+
+    @Override
+    public void onClick(String videoName) {
+        callback.onClick(videoName);
     }
 }

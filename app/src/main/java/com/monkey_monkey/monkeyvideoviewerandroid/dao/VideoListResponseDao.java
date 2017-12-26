@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class VideoListResponseDao {
-    @SerializedName("files") String files[];
+    @SerializedName("files") private String files[];
 
     public String[] getFiles() {
         return files;

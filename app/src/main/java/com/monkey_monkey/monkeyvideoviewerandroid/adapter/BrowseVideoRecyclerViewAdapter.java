@@ -2,7 +2,6 @@ package com.monkey_monkey.monkeyvideoviewerandroid.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +19,19 @@ public class BrowseVideoRecyclerViewAdapter extends RecyclerView.Adapter<BrowseV
     private static BrowseVideoRecyclerViewAdapter instance;
     private LayoutInflater mInflater;
     private String studentCode;
+    private BrowseVideoRecyclerViewAdapter.onClickListener callback;
+
+    public interface onClickListener {
+        void onClick(String videoName);
+    }
 
     private BrowseVideoRecyclerViewAdapter() {
     }
 
-    public void init(Context context, String studentCode) {
+    public void init(Context context, String studentCode, BrowseVideoRecyclerViewAdapter.onClickListener callback) {
         mInflater = LayoutInflater.from(context);
         this.studentCode = studentCode;
+        this.callback = callback;
     }
 
     public void load() {
@@ -81,7 +86,7 @@ public class BrowseVideoRecyclerViewAdapter extends RecyclerView.Adapter<BrowseV
 
         @Override
         public void onClick(View view) {
-            Log.i(TAG, "onClick: " + position);
+            callback.onClick(ListStudentVideoManager.getInstance().getVideoNameAtIndex(position));
         }
     }
 }

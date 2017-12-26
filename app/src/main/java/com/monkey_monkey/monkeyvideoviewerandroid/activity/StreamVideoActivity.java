@@ -25,7 +25,7 @@ public class StreamVideoActivity extends AppCompatActivity {
         VideoView videoView = findViewById(R.id.video_view);
         MediaController mediaController = new MediaController(this);
         mediaController.setAnchorView(videoView);
-        Uri video = Uri.parse(link);
+        Uri video = Uri.parse(getIntent().getStringExtra("link"));
         videoView.setMediaController(mediaController);
         videoView.setVideoURI(video);
         videoView.start();
