@@ -13,21 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".activity.MainActivity"
-            android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activity.KeyboardActivity" />
-        <activity android:name=".activity.BrowseVideoActivity" />
-        <activity
-            android:name=".activity.ClockActivity"
-            android:screenOrientation="landscape" />
-        <activity android:name=".activity.ScannerActivity" />
 
         <service android:name=".service.CountDownService" />
         <service android:name=".service.StopWatchService" />
@@ -37,8 +22,34 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.KeyboardActivity"
+            android:screenOrientation="landscape" />
+
+        <activity
+            android:name=".activity.BrowseVideoActivity"
+            android:screenOrientation="landscape" />
+
+        <activity
+            android:name=".activity.ClockActivity"
+            android:screenOrientation="landscape" />
+
+        <activity android:name=".activity.ScannerActivity" />
+
+        <activity
             android:name=".activity.StreamVideoActivity"
             android:screenOrientation="landscape" />
+
+        <activity android:name=".activity.PdfViewerActivity"/>
     </application>
 
 </manifest>
