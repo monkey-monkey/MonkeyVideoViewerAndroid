@@ -128,27 +128,19 @@ public class CountDownFragment extends Fragment implements View.OnClickListener,
     @Override
     public void onTimeChange(final int second) {
         if (getActivity() != null) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    updateSecond(second);
-                }
-            });
+            getActivity().runOnUiThread(() -> updateSecond(second));
         }
     }
 
     @Override
     public void onCountDownEnd() {
-        Log.i(TAG, "onCountDownEnd: called");
+        Log.i(TAG, "onStopWatchStop: called");
         running = false;
         if (getActivity() != null) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    updateSecond(0);
-                    btnStart.setColor(getResources().getColor(R.color.btn_green));
-                    btnStart.setImageResource(R.drawable.ic_check);
-                }
+            getActivity().runOnUiThread(() -> {
+                updateSecond(0);
+                btnStart.setColor(getResources().getColor(R.color.btn_green));
+                btnStart.setImageResource(R.drawable.ic_check);
             });
             getActivity().stopService(new Intent(getActivity(), CountDownService.class));
         }

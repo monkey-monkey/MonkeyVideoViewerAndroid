@@ -10,23 +10,23 @@ import android.util.Log;
  * Created by admin on 23/12/2017 AD.
  */
 
-public class CountDownService extends Service {
+public class StopWatchService extends Service {
 
-    private static final String TAG = "CountDownService";
+    private static final String TAG = "StopWatchService";
     private static boolean pause = false;
-    private static CountDownService.countDownListener callback;
+    private static StopWatchService.countDownListener callback;
     private static int second = 0;
     private static boolean requestStop = false;
 
     public interface countDownListener {
         void onTimeChange(int second);
 
-        void onCountDownEnd();
+        void onStopWatchStop();
     }
 
-    public static void init(int second, CountDownService.countDownListener callback) {
-        CountDownService.second = second;
-        CountDownService.callback = callback;
+    public static void init(int second, StopWatchService.countDownListener callback) {
+        StopWatchService.second = second;
+        StopWatchService.callback = callback;
         Log.i(TAG, "init: called");
     }
 
@@ -38,32 +38,29 @@ public class CountDownService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (second > 0) {
-                    while (!pause) {
-                        second--;
-                        callback.onTimeChange(second);
-                        Log.d(TAG, "run: second left " + second);
-                        if (second == 0 || requestStop) {
-                            break;
-                        }
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    if (requestStop) {
-                        second = 0;
-                        pause = false;
-                        requestStop = false;
+        new Thread(() -> {
+            while (Integer.MAX_VALUE > second) {
+                while (!pause) {
+                    second++;
+                    callback.onTimeChange(second);
+                    Log.d(TAG, "run: second count " + second);
+                    if (second == Integer.MAX_VALUE || requestStop) {
                         break;
                     }
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-                callback.onCountDownEnd();
+                if (requestStop) {
+                    second = 0;
+                    pause = false;
+                    requestStop = false;
+                    break;
+                }
             }
+            callback.onStopWatchStop();
         }).start();
         return super.onStartCommand(intent, flags, startId);
     }
