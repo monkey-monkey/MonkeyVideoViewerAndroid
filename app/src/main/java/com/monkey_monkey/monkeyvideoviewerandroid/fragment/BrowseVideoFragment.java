@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.monkey_monkey.monkeyvideoviewerandroid.R;
 import com.monkey_monkey.monkeyvideoviewerandroid.adapter.BrowseVideoRecyclerViewAdapter;
@@ -21,6 +22,7 @@ public class BrowseVideoFragment extends Fragment implements BrowseVideoRecycler
     private static final String TAG = "BrowseVideoFragment";
     private static BrowseVideoFragment instance;
     private BrowseVideoFragment.onClickListener callback;
+    private FrameLayout loader;
 
     public interface onClickListener {
         void onClick(String studentCode);
@@ -46,6 +48,8 @@ public class BrowseVideoFragment extends Fragment implements BrowseVideoRecycler
     }
 
     private void initInstance(View rootView, Bundle savedInstanceState) {
+        loader = rootView.findViewById(R.id.loader);
+
         RecyclerView recyclerView = rootView.findViewById(R.id.recycler_view);
         BrowseVideoRecyclerViewAdapter.getInstance().init(getActivity(), getActivity().getIntent().getStringExtra("studentCode"), this);
         BrowseVideoRecyclerViewAdapter.getInstance().load();
@@ -56,5 +60,10 @@ public class BrowseVideoFragment extends Fragment implements BrowseVideoRecycler
     @Override
     public void onClick(String videoName) {
         callback.onClick(videoName);
+    }
+
+    @Override
+    public void onLoadComplete() {
+        loader.setVisibility(View.GONE);
     }
 }

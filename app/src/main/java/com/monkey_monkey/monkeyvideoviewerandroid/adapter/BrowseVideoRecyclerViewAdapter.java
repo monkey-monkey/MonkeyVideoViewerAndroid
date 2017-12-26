@@ -23,6 +23,7 @@ public class BrowseVideoRecyclerViewAdapter extends RecyclerView.Adapter<BrowseV
 
     public interface onClickListener {
         void onClick(String videoName);
+        void onLoadComplete();
     }
 
     private BrowseVideoRecyclerViewAdapter() {
@@ -64,6 +65,7 @@ public class BrowseVideoRecyclerViewAdapter extends RecyclerView.Adapter<BrowseV
     @Override
     public void onLoadComplete() {
         notifyDataSetChanged();
+        callback.onLoadComplete();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
