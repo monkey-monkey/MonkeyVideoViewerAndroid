@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
     }
 
     private void initInstance(Bundle savedInstanceState) {
+        MainFragment.getInstance().init(this);
         if (savedInstanceState == null) {
-            MainFragment.getInstance().init(this);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.contentContainer, MainFragment.getInstance(), "MainFragment")
                     .commit();
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
     @Override
     public void onGetPath(String path) {
         Log.d(TAG, "onGetPath: path " + path);
-        startOpenFileActivity(getResources().getString(R.string.base_url) + "get/v1/keyStudent?k="+path);
+        startOpenFileActivity(getResources().getString(R.string.base_url) + "get/v1/keyStudent?k=" + path);
     }
 
     @Override
