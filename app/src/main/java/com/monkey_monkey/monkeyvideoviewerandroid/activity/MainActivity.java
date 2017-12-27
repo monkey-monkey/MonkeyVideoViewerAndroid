@@ -9,13 +9,14 @@ import android.util.Log;
 
 import com.monkey_monkey.monkeyvideoviewerandroid.R;
 import com.monkey_monkey.monkeyvideoviewerandroid.fragment.MainFragment;
+import com.monkey_monkey.monkeyvideoviewerandroid.manager.KeyStudentPathManager;
 
 import java.io.File;
 
 import es.voghdev.pdfviewpager.library.remote.DownloadFile;
 import es.voghdev.pdfviewpager.library.remote.DownloadFileUrlConnectionImpl;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.onChangePageListener, DownloadFile.Listener {
+public class MainActivity extends AppCompatActivity implements MainFragment.onChangePageListener, DownloadFile.Listener, KeyStudentPathManager.onLoad {
 
     private static final String TAG = "MainActivity";
     public static final int REQUEST_KEYBOARD_INPUT = 0;
@@ -37,8 +38,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
                     .add(R.id.contentContainer, MainFragment.getInstance(), "MainFragment")
                     .commit();
         }
+        KeyStudentPathManager.getInstance().init(this);
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -50,7 +51,8 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
                 break;
             case REQUEST_QR_CODE_SCANNER:
                 if (data != null && data.getStringExtra(ScannerActivity.ACTIVITY_RESULT) != null) {
-                    startOpenFileActivity(data.getStringExtra(ScannerActivity.ACTIVITY_RESULT));
+                    KeyStudentPathManager.getInstance().getKeyStudentPath(data.getStringExtra(ScannerActivity.ACTIVITY_RESULT));
+//                    startOpenFileActivity(data.getStringExtra(ScannerActivity.ACTIVITY_RESULT));
                 }
                 break;
             case REQUEST_BARCODE_SCANNER:
@@ -72,9 +74,9 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
     }
 
     private void startOpenFileActivity(String filePath) {
+        Log.d(TAG, "startOpenFileActivity: filePath " + filePath);
         downloadFile = new DownloadFileUrlConnectionImpl(this, new Handler(), this);
-        downloadFile.download("http://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf",
-                new File(getExternalFilesDir("pdf"), "legacy.pdf").getAbsolutePath());
+        downloadFile.download(filePath, new File(getExternalFilesDir("pdf"), "key.pdf").getAbsolutePath());
     }
 
     private void launchOpenPDFIntent(String destinationPath) {
@@ -121,6 +123,17 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
 
     @Override
     public void onProgressUpdate(int progress, int total) {
+
+    }
+
+    @Override
+    public void onGetPath(String path) {
+        Log.d(TAG, "onGetPath: path " + path);
+        startOpenFileActivity(getResources().getString(R.string.base_url) + "get/v1/keyStudent?k="+path);
+    }
+
+    @Override
+    public void onLoadComplete() {
 
     }
 }
