@@ -21,6 +21,7 @@
                 android:paddingStart="40dp">
 
                 <ImageButton
+                    android:background="#ff90e0"
                     android:id="@+id/camera_btn"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"

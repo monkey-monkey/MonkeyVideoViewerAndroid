@@ -1,19 +1,27 @@
 package com.monkey_monkey.monkeyvideoviewerandroid.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.monkey_monkey.monkeyvideoviewerandroid.R;
 import com.monkey_monkey.monkeyvideoviewerandroid.fragment.MainFragment;
 
-public class MainActivity extends AppCompatActivity implements MainFragment.onChangePageListener {
+import java.io.File;
+
+import es.voghdev.pdfviewpager.library.remote.DownloadFile;
+import es.voghdev.pdfviewpager.library.remote.DownloadFileUrlConnectionImpl;
+
+public class MainActivity extends AppCompatActivity implements MainFragment.onChangePageListener, DownloadFile.Listener {
 
     private static final String TAG = "MainActivity";
     public static final int REQUEST_KEYBOARD_INPUT = 0;
     public static final int REQUEST_QR_CODE_SCANNER = 1;
     public static final int REQUEST_BARCODE_SCANNER = 2;
+    private DownloadFile downloadFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +72,17 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
     }
 
     private void startOpenFileActivity(String filePath) {
-        Log.i(TAG, "startOpenFileActivity: " + filePath);
+        downloadFile = new DownloadFileUrlConnectionImpl(this, new Handler(), this);
+        downloadFile.download("http://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf",
+                new File(getExternalFilesDir("pdf"), "legacy.pdf").getAbsolutePath());
+    }
+
+    private void launchOpenPDFIntent(String destinationPath) {
+        File file = new File(destinationPath);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(file), "application/pdf");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
     }
 
     @Override
@@ -89,5 +107,20 @@ public class MainActivity extends AppCompatActivity implements MainFragment.onCh
     public void onCallScanner() {
         Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
         startActivityForResult(intent, REQUEST_QR_CODE_SCANNER);
+    }
+
+    @Override
+    public void onSuccess(String url, String destinationPath) {
+        launchOpenPDFIntent(destinationPath);
+    }
+
+    @Override
+    public void onFailure(Exception e) {
+
+    }
+
+    @Override
+    public void onProgressUpdate(int progress, int total) {
+
     }
 }

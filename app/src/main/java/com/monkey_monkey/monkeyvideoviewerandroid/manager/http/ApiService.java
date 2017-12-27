@@ -1,6 +1,7 @@
 package com.monkey_monkey.monkeyvideoviewerandroid.manager.http;
 
 import com.monkey_monkey.monkeyvideoviewerandroid.dao.EncryptResponseDao;
+import com.monkey_monkey.monkeyvideoviewerandroid.dao.KeyStudentPathResponseDao;
 import com.monkey_monkey.monkeyvideoviewerandroid.dao.VideoListResponseDao;
 
 import io.reactivex.Observable;
@@ -21,4 +22,7 @@ public interface ApiService {
     @POST("/post/v1/encryptRequest")
     Observable<EncryptResponseDao> encrypt(@Field("body") String body);
 
+    @FormUrlEncoded
+    @POST("/post/v1/getKeyStudentPath")
+    Observable<KeyStudentPathResponseDao> getKeyStudentPath(@Field("path") String path);
 }
