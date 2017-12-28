@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.monkey_monkey.monkeyvideoviewerandroid.R;
@@ -23,6 +24,7 @@ public class BrowseVideoRecyclerViewAdapter extends RecyclerView.Adapter<BrowseV
 
     public interface onClickListener {
         void onClick(String videoName);
+
         void onLoadComplete();
     }
 
@@ -82,6 +84,12 @@ public class BrowseVideoRecyclerViewAdapter extends RecyclerView.Adapter<BrowseV
 
         void bind(int position) {
             this.position = position;
+            RelativeLayout view = itemView.findViewById(R.id.background);
+            if (position % 2 == 0) {
+                view.setBackgroundColor(0xFFFFFFFF);
+            }else {
+                view.setBackgroundColor(0xFFE0E0E0);
+            }
             TextView textViewVideoName = itemView.findViewById(R.id.text_view_video_name);
             textViewVideoName.setText(ListStudentVideoManager.getInstance().getVideoNameAtIndex(position));
         }
