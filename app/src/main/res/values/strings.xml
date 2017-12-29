@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MonkeyVideoViewerAndroid</string>
+    <string name="app_name">Monkey Hybrid</string>
     <string name="base_url">http://192.168.1.124:8080/</string>
     <string name="_1">1</string>
     <string name="_2">2</string>
